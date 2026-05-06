@@ -1,0 +1,41 @@
+http:
+  middlewares:
+    admin-auth:
+      basicAuth:
+        users:
+          - "admin:$apr1$taeZjwNZ$ArEYu9LBG9DkkggqrKsax1"
+
+  routers:
+    tour-matrix-home:
+      rule: "Host(`www.tourmatrix.cn`)"
+      entryPoints:
+        - web
+      service: tour-matrix-home
+    tour-matrix-web:
+      rule: "Host(`web.tourmatrix.cn`)"
+      entryPoints:
+        - web
+      service: tour-matrix
+
+    adminer:
+      rule: "Host(`adminer.tourmatrix.cn`)"
+      entryPoints:
+        - web
+      middlewares:
+        - admin-auth
+      service: adminer
+
+  services:
+    tour-matrix-home:
+      loadBalancer:
+        servers:
+          - url: "http://172.18.0.1:3001"
+    tour-matrix:
+      loadBalancer:
+        servers:
+          - url: "http://tour-matrix:3000/"
+
+    adminer:
+      loadBalancer:
+        servers:
+          - url: "http://adminer:8080/"

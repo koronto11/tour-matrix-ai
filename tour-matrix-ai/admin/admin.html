@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tour Matrix AI | Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.loli.net">
+  <link rel="preconnect" href="https://gstatic.loli.net" crossorigin>
+  <link href="https://fonts.loli.net/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-wrap">
+    <a href="/home/index.html" class="brand">
+      <img src="/home/assets/logo.png" alt="Tour Matrix AI logo" class="brand-logo" />
+    </a>
+    <div class="header-title">
+      Admin Panel
+      <span class="header-badge">Prototype</span>
+    </div>
+    <nav class="header-nav">
+      <a href="/home/index.html">Back to Website</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container" style="padding-top:32px">
+
+    <div class="stats-bar">
+      <div class="stat-card"><strong>47</strong><span>Total demo requests</span></div>
+      <div class="stat-card"><strong>30</strong><span>New demo requests</span></div>
+      <div class="stat-card"><strong>45</strong><span>Total DMC applications</span></div>
+      <div class="stat-card"><strong>22</strong><span>New DMC applications</span></div>
+    </div>
+
+    <div class="tabs-wrap">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="demo">Demo Requests</button>
+        <button class="tab-btn" data-tab="dmc">DMC Applications</button>
+      </div>
+      <button class="sort-btn" id="sort-btn">Sort ↓ (newest)</button>
+    </div>
+
+    <!-- Demo Requests Panel -->
+    <div class="data-panel active" id="panel-demo">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <select class="filter-select" id="filter-demo">
+            <option value="all">All statuses</option>
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="demo-scheduled">Demo Scheduled</option>
+            <option value="closed">Closed</option>
+          </select>
+          <input type="text" class="search-input" id="search-demo" placeholder="Search by name, email or company" />
+        </div>
+        <div class="toolbar-right">
+          <span class="count-label" id="count-demo">47 entries</span>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Message</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-demo"></tbody>
+      </table>
+      <div class="pagination" id="pagination-demo"></div>
+    </div>
+
+    <!-- DMC Applications Panel -->
+    <div class="data-panel" id="panel-dmc">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <select class="filter-select" id="filter-dmc">
+            <option value="all">All statuses</option>
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="onboarding">Onboarding</option>
+            <option value="onboarded">Onboarded</option>
+          </select>
+          <input type="text" class="search-input" id="search-dmc" placeholder="Search by name, email or company" />
+        </div>
+        <div class="toolbar-right">
+          <span class="count-label" id="count-dmc">45 entries</span>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Company</th>
+            <th>Destinations</th>
+            <th>Specialization</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-dmc"></tbody>
+      </table>
+      <div class="pagination" id="pagination-dmc"></div>
+    </div>
+
+  </div>
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

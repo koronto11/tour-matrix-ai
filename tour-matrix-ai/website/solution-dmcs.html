@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tour Matrix AI | For DMCs</title>
+  <link rel="preconnect" href="https://fonts.loli.net">
+  <link rel="preconnect" href="https://gstatic.loli.net" crossorigin>
+  <link href="https://fonts.loli.net/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="Tour Matrix AI logo" class="brand-logo" />
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html">Overview</a>
+      <div class="dropdown">
+        <button class="nav-dropdown-toggle">Solution <span class="caret"></span></button>
+        <div class="dropdown-menu">
+          <a href="solution-travel-agencies.html">For Travel Agencies</a>
+          <a href="solution-dmcs.html">For DMCs</a>
+        </div>
+      </div>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="index.html#examples">Example Itineraries</a>
+      <a href="index.html#pricing">Pricing</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="index.html#demo" class="btn btn-primary">Book a Demo</a>
+      <a href="solution-dmcs.html#partner-form" class="btn btn-secondary">Join as DMC</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container hero-copy">
+      <div class="breadcrumbs"><a href="index.html">Overview</a><span>/</span><span>For DMCs</span></div>
+      <div class="eyebrow">Solution for DMCs</div>
+      <h1>Get discovered while agencies are building itineraries.</h1>
+      <p class="hero-text">Tour Matrix AI gives DMCs a way to be part of the planning workflow earlier, not just a supplier contacted at the end of the process.</p>
+      <div class="hero-actions">
+        <a href="#partner-form" class="btn btn-secondary btn-large">Join as DMC</a>
+        <a href="how-it-works.html" class="btn btn-ghost btn-large">See how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">DMC outcomes</div>
+        <h2>A stronger path to qualified agency demand.</h2>
+        <p>Position DMCs as trusted destination experts inside the itinerary creation process, where influence is higher and fit is clearer.</p>
+      </div>
+      <div class="detail-grid">
+        <article class="detail-card"><div class="icon-chip navy">◎</div><h3>Earlier visibility</h3><p>Be surfaced to agencies while trips are still being designed.</p></article>
+        <article class="detail-card"><div class="icon-chip teal">↗</div><h3>Better matched demand</h3><p>Increase the likelihood that inbound requests align with your destination strengths.</p></article>
+        <article class="detail-card"><div class="icon-chip neutral">▣</div><h3>Showcase expertise</h3><p>Highlight signature experiences, routes and local planning knowledge.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section split-section alt">
+    <div class="container split-grid reverse">
+      <div class="panel">
+        <div class="panel-head"><h3>Why DMCs join</h3><span class="status-pill">Partner path</span></div>
+        <div class="partner-benefits">
+          <div class="benefit-line"><strong>Visibility</strong><span>Be surfaced earlier in agency planning</span></div>
+          <div class="benefit-line"><strong>Demand</strong><span>Reach agencies designing trips now</span></div>
+          <div class="benefit-line"><strong>Context</strong><span>Show destination expertise clearly</span></div>
+          <div class="benefit-line"><strong>Efficiency</strong><span>Reduce repetitive qualification work over time</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">Use cases</div>
+        <h2>How DMCs fit into Tour Matrix AI.</h2>
+        <div class="bullet-list">
+          <div class="bullet-item"><h4>Destination expertise</h4><p>Share location-specific knowledge that improves itinerary quality and realism.</p></div>
+          <div class="bullet-item"><h4>Signature programs</h4><p>Show agencies what your team does especially well instead of relying only on reactive outreach.</p></div>
+          <div class="bullet-item"><h4>Partner pathway</h4><p>Use a clean onboarding path to start with a profile and expand later into richer content and workflows.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section demo-section" id="partner-form">
+    <div class="container demo-grid">
+      <div>
+        <div class="eyebrow">Join as DMC</div>
+        <h2>Tell us about your destinations and strengths.</h2>
+        <p class="lead">Start with a simple partner application and follow up with your destination focus and ideal agency types.</p>
+      </div>
+      <form class="demo-form">
+        <div class="field-row"><input type="text" id="dmc-name" name="full_name" placeholder="Your name" required /><input type="email" id="dmc-email" name="email" placeholder="Work email" required /></div>
+        <div class="field-row"><input type="text" id="dmc-company" name="company_name" placeholder="Company name" /><input type="text" id="dmc-destinations" name="primary_destinations" placeholder="Primary destination(s)" /></div>
+        <textarea id="dmc-note" name="specialization_note" rows="5" placeholder="Tell us what your DMC specializes in and which agencies you work best with"></textarea>
+        <button type="submit" class="btn btn-primary btn-large">Apply as DMC Partner</button>
+        <p class="form-note">Static partner form placeholder. Connect this to your CRM or form tool in production.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <img src="assets/logo.png" alt="Tour Matrix AI logo" class="footer-logo" />
+      <p class="footer-text">AI-powered tour design platform for travel agencies and DMCs.</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Overview</a>
+      <a href="solution-travel-agencies.html">For Travel Agencies</a>
+      <a href="solution-dmcs.html">For DMCs</a>
+      <a href="how-it-works.html">How It Works</a>
+    </div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="index.html#demo">Contact</a>
+      <a href="/home/admin/admin.html">Admin</a>
+    </div>
+  </div>
+</footer>
+<script src="script.js"></script>
+
+</body>
+</html>
