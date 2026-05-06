@@ -286,14 +286,14 @@
   <section class="register-section">
     <div class="container">
       <div class="register-card">
-        <h1>Register Your Agency</h1>
-        <p>Join Tour Matrix AI and start creating professional itineraries faster.</p>
+        <h1 id="page-title">Register Your Agency</h1>
+        <p id="page-description">Join Tour Matrix AI and start creating professional itineraries faster.</p>
 
         <!-- Region Selector -->
         <div class="region-selector">
-          <label for="region-select">Select Region</label>
+          <label for="region-select" id="region-label">Select Region</label>
           <select id="region-select">
-            <option value="china">China</option>
+            <option value="china">中国</option>
             <option value="singapore">Singapore</option>
           </select>
         </div>
@@ -602,11 +602,35 @@
 </footer>
 
 <script>
+// Multi-language texts
+const translations = {
+  china: {
+    title: '注册您的旅行社',
+    description: '加入 Tour Matrix AI，开始更快速地创建专业行程方案。',
+    regionLabel: '选择地区'
+  },
+  singapore: {
+    title: 'Register Your Agency',
+    description: 'Join Tour Matrix AI and start creating professional itineraries faster.',
+    regionLabel: 'Select Region'
+  }
+};
+
 // Region selector change handler
 const regionSelect = document.getElementById('region-select');
+const pageTitle = document.getElementById('page-title');
+const pageDescription = document.getElementById('page-description');
+const regionLabel = document.getElementById('region-label');
+
 if (regionSelect) {
   regionSelect.addEventListener('change', (e) => {
     const selectedRegion = e.target.value;
+    
+    // Update texts based on selected region
+    const texts = translations[selectedRegion];
+    pageTitle.textContent = texts.title;
+    pageDescription.textContent = texts.description;
+    regionLabel.textContent = texts.regionLabel;
     
     // Update active tab content
     document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
