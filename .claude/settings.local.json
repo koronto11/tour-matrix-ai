@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls ~/.claude/skills/ 2>/dev/null)",
+      "Read(//Users/jiangtao/.claude/skills/**)",
+      "Bash(ls ~/.claude/plugins/ 2>/dev/null)",
+      "Read(//Users/jiangtao/.claude/plugins/**)",
+      "Bash(cat ~/.claude/keybindings.json 2>/dev/null || echo \"File not found\")",
+      "Read(//Users/jiangtao/.claude/**)"
+    ]
+  }
+}
