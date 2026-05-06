@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tour Matrix AI | Register</title>
+  <meta name="description" content="Register your travel agency on Tour Matrix AI platform." />
+  <link rel="preconnect" href="https://fonts.loli.net">
+  <link rel="preconnect" href="https://gstatic.loli.net" crossorigin>
+  <link href="https://fonts.loli.net/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .register-section {
+      padding: 72px 0 96px;
+      background: linear-gradient(180deg, #fff 0%, #f9fcfc 100%);
+    }
+    .register-card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 36px;
+    }
+    .register-card h1 {
+      font-size: var(--fs-h2);
+      margin: 0 0 8px;
+      color: var(--navy-2);
+    }
+    .register-card > p {
+      color: var(--muted);
+      font-size: var(--fs-body-lg);
+      margin: 0 0 32px;
+    }
+    
+    /* Region Selector */
+    .region-selector {
+      margin-bottom: 32px;
+    }
+    .region-selector label {
+      display: block;
+      font-size: var(--fs-body-sm);
+      font-weight: 600;
+      color: var(--navy-2);
+      margin-bottom: 8px;
+    }
+    .region-selector select {
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid #dbe5ee;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font: inherit;
+      font-size: var(--fs-body);
+      color: var(--text);
+      background: #fff;
+      cursor: pointer;
+    }
+    .region-selector select:focus {
+      outline: none;
+      border-color: rgba(32,170,160,.55);
+      box-shadow: 0 0 0 4px rgba(32,170,160,.08);
+    }
+    
+    /* Tab Content */
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    
+    /* Form Sections */
+    .form-section {
+      margin-bottom: 32px;
+    }
+    .form-section-title {
+      font-size: var(--fs-h3);
+      color: var(--navy-2);
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .form-subsection {
+      margin-bottom: 20px;
+    }
+    .form-subsection-title {
+      font-size: var(--fs-h4);
+      color: var(--navy-2);
+      margin: 0 0 12px;
+      font-weight: 600;
+    }
+    
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: var(--fs-body-sm);
+      font-weight: 600;
+      color: var(--navy-2);
+      margin-bottom: 6px;
+    }
+    .form-group label .required {
+      color: #e74c3c;
+      margin-left: 2px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid #dbe5ee;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font: inherit;
+      color: var(--text);
+      background: #fff;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: rgba(32,170,160,.55);
+      box-shadow: 0 0 0 4px rgba(32,170,160,.08);
+    }
+    .form-group input[type="file"] {
+      padding: 10px;
+      cursor: pointer;
+    }
+    
+    /* File upload card style */
+    .file-upload-card {
+      border: 2px dashed #dbe5ee;
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      background: #f7fafc;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .file-upload-card:hover {
+      border-color: var(--teal);
+      background: rgba(32, 170, 160, 0.04);
+    }
+    .file-upload-card.has-file {
+      border-color: var(--teal);
+      background: rgba(32, 170, 160, 0.06);
+    }
+    .file-upload-card input[type="file"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .file-upload-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 12px;
+      color: var(--teal);
+    }
+    .file-upload-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+    .file-upload-text {
+      font-size: var(--fs-body);
+      font-weight: 600;
+      color: var(--navy-2);
+      margin: 0 0 6px;
+    }
+    .file-upload-text .upload-link {
+      color: var(--teal);
+      text-decoration: underline;
+    }
+    .file-upload-hint {
+      font-size: var(--fs-body-sm);
+      color: var(--muted);
+      margin: 0;
+    }
+    .file-name-display {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: #fff;
+      border-radius: 8px;
+      font-size: var(--fs-body-sm);
+      color: var(--navy-2);
+      font-weight: 600;
+      display: none;
+    }
+    .file-name-display.show {
+      display: block;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    
+    /* Helper text */
+    .helper-text {
+      font-size: var(--fs-body-sm);
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    
+    /* Submit button */
+    .submit-section {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 16px 24px;
+      font-size: var(--fs-body);
+    }
+    
+    /* Success message */
+    .success-message {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .success-message h2 {
+      color: var(--teal);
+      margin: 0 0 12px;
+    }
+    .success-message p {
+      color: var(--muted);
+      font-size: var(--fs-body-lg);
+    }
+    
+    @media (max-width: 860px) {
+      .register-card {
+        padding: 24px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .tab-btn {
+        padding: 14px 16px;
+        font-size: var(--fs-body-sm);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="Tour Matrix AI logo" class="brand-logo" />
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html">Overview</a>
+      <div class="dropdown">
+        <button class="nav-dropdown-toggle">Solution <span class="caret"></span></button>
+        <div class="dropdown-menu">
+          <a href="solution-travel-agencies.html">For Travel Agencies</a>
+          <a href="solution-dmcs.html">For DMCs</a>
+        </div>
+      </div>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="index.html#examples">Example Itineraries</a>
+      <a href="index.html#pricing">Pricing</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="index.html#demo" class="btn btn-primary">Book a Demo</a>
+      <a href="solution-dmcs.html#partner-form" class="btn btn-secondary">Join as DMC</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="register-section">
+    <div class="container">
+      <div class="register-card">
+        <h1>Register Your Agency</h1>
+        <p>Join Tour Matrix AI and start creating professional itineraries faster.</p>
+
+        <!-- Region Selector -->
+        <div class="region-selector">
+          <label for="region-select">Select Region</label>
+          <select id="region-select">
+            <option value="china">China</option>
+            <option value="singapore">Singapore</option>
+          </select>
+        </div>
+
+        <!-- China Form -->
+        <div class="tab-content active" id="tab-china">
+          <form id="domestic-form" class="register-form">
+            <!-- Company Information -->
+            <div class="form-section">
+              <h2 class="form-section-title">公司信息</h2>
+              <div class="form-group">
+                <label for="dom-company-name">公司全称 <span class="required">*</span></label>
+                <input type="text" id="dom-company-name" name="company_name" required placeholder="请输入公司全称" />
+              </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-section">
+              <h2 class="form-section-title">联系人信息</h2>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="dom-contact-name">姓名 <span class="required">*</span></label>
+                  <input type="text" id="dom-contact-name" name="contact_name" required placeholder="请输入姓名" />
+                </div>
+                <div class="form-group">
+                  <label for="dom-contact-position">职位 <span class="required">*</span></label>
+                  <input type="text" id="dom-contact-position" name="contact_position" required placeholder="请输入职位" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="dom-contact-email">邮箱 <span class="required">*</span></label>
+                  <input type="email" id="dom-contact-email" name="contact_email" required placeholder="example@company.com" />
+                </div>
+                <div class="form-group">
+                  <label for="dom-contact-phone">手机号 <span class="required">*</span></label>
+                  <input type="tel" id="dom-contact-phone" name="contact_phone" required placeholder="请输入手机号" pattern="[0-9]+" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Required Qualifications -->
+            <div class="form-section">
+              <h2 class="form-section-title">资质文件（必填）</h2>
+              <div class="form-group">
+                <label for="dom-license">经营许可证 <span class="required">*</span></label>
+                <div class="file-upload-card" id="dom-license-card">
+                  <input type="file" id="dom-license" name="business_license" required accept=".jpg,.jpeg,.png,.pdf" />
+                  <div class="file-upload-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                      <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                  </div>
+                  <p class="file-upload-text"><span class="upload-link">点击上传</span> 营业执照</p>
+                  <p class="file-upload-hint">PDF / JPG / PNG，不超过 10MB</p>
+                  <div class="file-name-display" id="dom-license-name"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Optional Qualifications -->
+            <div class="form-section">
+              <h2 class="form-section-title">资质文件（可选）</h2>
+              
+              <div class="form-subsection">
+                <h3 class="form-subsection-title">公司标志及简介</h3>
+                <div class="form-group">
+                  <label for="dom-logo">公司标志及简介（JPG/PPT）用于平台展示</label>
+                  <div class="file-upload-card" id="dom-logo-card">
+                    <input type="file" id="dom-logo" name="company_logo" accept=".jpg,.jpeg,.png,.ppt,.pptx,.pdf" />
+                    <div class="file-upload-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                      </svg>
+                    </div>
+                    <p class="file-upload-text"><span class="upload-link">点击上传</span> 公司标志及简介</p>
+                    <p class="file-upload-hint">JPG / PNG / PPT / PDF</p>
+                    <div class="file-name-display" id="dom-logo-name"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-subsection">
+                <h3 class="form-subsection-title">业务信息</h3>
+                <div class="form-group">
+                  <label for="dom-destinations">主要目的地（中国/东南亚/全球）</label>
+                  <input type="text" id="dom-destinations" name="destinations" placeholder="例如：中国、东南亚" />
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="dom-annual-volume">年旅游量</label>
+                    <input type="number" id="dom-annual-volume" name="annual_volume" placeholder="例如：5000" min="0" />
+                  </div>
+                  <div class="form-group">
+                    <label for="dom-order-value">平均订单金额范围</label>
+                    <input type="text" id="dom-order-value" name="order_value" placeholder="例如：5000-10000元" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="submit-section">
+              <button type="submit" class="btn btn-primary submit-btn">提交注册申请</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Singapore Form -->
+        <div class="tab-content" id="tab-singapore">
+          <form id="singapore-form" class="register-form">
+            <!-- Company Information -->
+            <div class="form-section">
+              <h2 class="form-section-title">Company Information</h2>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="int-company-name">Full Company Name <span class="required">*</span></label>
+                  <input type="text" id="int-company-name" name="company_name" required placeholder="Enter full company name" />
+                </div>
+                <div class="form-group">
+                  <label for="int-uen">UEN Number <span class="required">*</span></label>
+                  <input type="text" id="int-uen" name="uen_number" required placeholder="Enter UEN number" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-section">
+              <h2 class="form-section-title">Contact Person Information</h2>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="int-contact-name">Name <span class="required">*</span></label>
+                  <input type="text" id="int-contact-name" name="contact_name" required placeholder="Enter name" />
+                </div>
+                <div class="form-group">
+                  <label for="int-contact-position">Position <span class="required">*</span></label>
+                  <input type="text" id="int-contact-position" name="contact_position" required placeholder="Enter position" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="int-contact-email">Email <span class="required">*</span></label>
+                  <input type="email" id="int-contact-email" name="contact_email" required placeholder="example@company.com" />
+                </div>
+                <div class="form-group">
+                  <label for="int-contact-phone">Mobile Number <span class="required">*</span></label>
+                  <input type="tel" id="int-contact-phone" name="contact_phone" required placeholder="Enter mobile number" pattern="[0-9]+" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Required Qualifications -->
+            <div class="form-section">
+              <h2 class="form-section-title">Qualification Documents (Required)</h2>
+              
+              <div class="form-subsection">
+                <h3 class="form-subsection-title">STB Travel Agency License</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="int-license-number">License Number <span class="required">*</span></label>
+                    <input type="text" id="int-license-number" name="license_number" required placeholder="Enter license number" />
+                  </div>
+                  <div class="form-group">
+                    <label for="int-license-type">Type (Special/General) <span class="required">*</span></label>
+                    <select id="int-license-type" name="license_type" required>
+                      <option value="">Select type</option>
+                      <option value="special">Special</option>
+                      <option value="general">General</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="int-license-validity">Validity Period (Year) <span class="required">*</span></label>
+                    <input type="number" id="int-license-validity" name="license_validity" required placeholder="e.g., 2025" min="2020" max="2030" />
+                  </div>
+                  <div class="form-group">
+                    <label for="int-license-issuance">Issuance Date (Year) <span class="required">*</span></label>
+                    <input type="number" id="int-license-issuance" name="license_issuance" required placeholder="e.g., 2020" min="2000" max="2026" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="int-license-file">STB Travel Agency License <span class="required">*</span></label>
+                  <div class="file-upload-card" id="int-license-file-card">
+                    <input type="file" id="int-license-file" name="license_file" required accept=".jpg,.jpeg,.png,.pdf" />
+                    <div class="file-upload-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                      </svg>
+                    </div>
+                    <p class="file-upload-text"><span class="upload-link">Click to upload</span> STB License</p>
+                    <p class="file-upload-hint">PDF / JPG / PNG, max 10MB</p>
+                    <div class="file-name-display" id="int-license-file-name"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-subsection">
+                <h3 class="form-subsection-title">Company Bank Account Certificate</h3>
+                <div class="form-group">
+                  <label for="int-bank-cert">Bank Statement or Account Opening Certificate <span class="required">*</span></label>
+                  <div class="file-upload-card" id="int-bank-cert-card">
+                    <input type="file" id="int-bank-cert" name="bank_certificate" required accept=".jpg,.jpeg,.png,.pdf" />
+                    <div class="file-upload-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                      </svg>
+                    </div>
+                    <p class="file-upload-text"><span class="upload-link">Click to upload</span> Bank Certificate</p>
+                    <p class="file-upload-hint">PDF / JPG / PNG, max 10MB</p>
+                    <div class="file-name-display" id="int-bank-cert-name"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Optional Qualifications -->
+            <div class="form-section">
+              <h2 class="form-section-title">Qualification Documents (Optional)</h2>
+              
+              <div class="form-subsection">
+                <h3 class="form-subsection-title">Company Logo and Introduction</h3>
+                <div class="form-group">
+                  <label for="int-logo">JPG/PPT Used for Platform Display</label>
+                  <div class="file-upload-card" id="int-logo-card">
+                    <input type="file" id="int-logo" name="company_logo" accept=".jpg,.jpeg,.png,.ppt,.pptx,.pdf" />
+                    <div class="file-upload-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                      </svg>
+                    </div>
+                    <p class="file-upload-text"><span class="upload-link">Click to upload</span> Company Logo</p>
+                    <p class="file-upload-hint">JPG / PNG / PPT / PDF</p>
+                    <div class="file-name-display" id="int-logo-name"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-subsection">
+                <h3 class="form-subsection-title">Business Information</h3>
+                <div class="form-group">
+                  <label for="int-destinations">Main Destinations (China/Southeast Asia/Global)</label>
+                  <input type="text" id="int-destinations" name="destinations" placeholder="e.g., China, Southeast Asia" />
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="int-annual-volume">Annual Tour Volume</label>
+                    <input type="number" id="int-annual-volume" name="annual_volume" placeholder="e.g., 5000" min="0" />
+                  </div>
+                  <div class="form-group">
+                    <label for="int-order-value">Average Order Value Range</label>
+                    <input type="text" id="int-order-value" name="order_value" placeholder="e.g., SGD 5000-10000" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="submit-section">
+              <button type="submit" class="btn btn-primary submit-btn">Submit Registration</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <img src="assets/logo.png" alt="Tour Matrix AI logo" class="footer-logo" />
+      <p class="footer-text">AI-powered tour design platform for travel agencies and DMCs.</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Overview</a>
+      <a href="solution-travel-agencies.html">For Travel Agencies</a>
+      <a href="solution-dmcs.html">For DMCs</a>
+      <a href="how-it-works.html">How It Works</a>
+    </div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="index.html#demo">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Region selector change handler
+const regionSelect = document.getElementById('region-select');
+if (regionSelect) {
+  regionSelect.addEventListener('change', (e) => {
+    const selectedRegion = e.target.value;
+    
+    // Update active tab content
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    document.getElementById(`tab-${selectedRegion}`).classList.add('active');
+  });
+}
+
+// Form submission handlers
+document.getElementById('domestic-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  // TODO: Implement form submission logic
+  alert('国内公司注册申请已提交！（此为演示，实际功能待实现）');
+});
+
+document.getElementById('singapore-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  // TODO: Implement form submission logic
+  alert('International company registration submitted! (Demo only, actual functionality to be implemented)');
+});
+
+// File upload card interactions
+document.querySelectorAll('.file-upload-card').forEach(card => {
+  const fileInput = card.querySelector('input[type="file"]');
+  const fileNameDisplay = card.querySelector('.file-name-display');
+  
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      card.classList.add('has-file');
+      fileNameDisplay.textContent = `✓ ${file.name}`;
+      fileNameDisplay.classList.add('show');
+    } else {
+      card.classList.remove('has-file');
+      fileNameDisplay.classList.remove('show');
+    }
+  });
+});
+
+// Mobile menu toggle
+const toggle = document.getElementById('menuToggle');
+const nav = document.getElementById('siteNav');
+if (toggle && nav) {
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+// Mobile dropdown
+document.querySelectorAll('.nav-dropdown-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (window.innerWidth <= 860) {
+      const parent = btn.closest('.dropdown');
+      parent.classList.toggle('open');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
