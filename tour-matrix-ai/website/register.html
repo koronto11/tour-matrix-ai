@@ -37,6 +37,10 @@
     /* Region Selector */
     .region-selector {
       margin-bottom: 32px;
+      display: grid;
+      grid-template-columns: 300px 300px;
+      gap: 20px;
+      align-items: end;
     }
     .region-selector label {
       display: block;
@@ -45,9 +49,13 @@
       color: var(--navy-2);
       margin-bottom: 8px;
     }
-    .region-selector select {
+    .region-selector label .required {
+      color: #e74c3c;
+      margin-left: 2px;
+    }
+    .region-selector select,
+    .region-selector input {
       width: 100%;
-      max-width: 300px;
       border: 1px solid #dbe5ee;
       border-radius: 12px;
       padding: 14px 16px;
@@ -57,10 +65,14 @@
       background: #fff;
       cursor: pointer;
     }
-    .region-selector select:focus {
+    .region-selector select:focus,
+    .region-selector input:focus {
       outline: none;
       border-color: rgba(32,170,160,.55);
       box-shadow: 0 0 0 4px rgba(32,170,160,.08);
+    }
+    .region-selector input {
+      cursor: text;
     }
     
     /* Tab Content */
@@ -246,6 +258,9 @@
         padding: 14px 16px;
         font-size: var(--fs-body-sm);
       }
+      .region-selector {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -291,15 +306,21 @@
 
         <!-- Region Selector -->
         <div class="region-selector">
-          <label for="region-select" id="region-label">Select Region</label>
-          <select id="region-select">
-            <option value="china">中国</option>
-            <option value="singapore">Singapore</option>
-          </select>
+          <div>
+            <label for="region-select" id="region-label">Select Region</label>
+            <select id="region-select">
+              <option value="china">中国</option>
+              <option value="singapore" selected>Singapore</option>
+            </select>
+          </div>
+          <div>
+            <label for="city-input" id="city-label">City <span class="required">*</span></label>
+            <input type="text" id="city-input" name="city" required placeholder="Enter city name" />
+          </div>
         </div>
 
         <!-- China Form -->
-        <div class="tab-content active" id="tab-china">
+        <div class="tab-content" id="tab-china">
           <form id="domestic-form" class="register-form">
             <!-- Company Information -->
             <div class="form-section">
@@ -338,22 +359,71 @@
             <!-- Required Qualifications -->
             <div class="form-section">
               <h2 class="form-section-title">资质文件（必填）</h2>
-              <div class="form-group">
-                <label for="dom-license">经营许可证 <span class="required">*</span></label>
-                <div class="file-upload-card" id="dom-license-card">
-                  <input type="file" id="dom-license" name="business_license" required accept=".jpg,.jpeg,.png,.pdf" />
-                  <div class="file-upload-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                      <polyline points="14 2 14 8 20 8"></polyline>
-                      <line x1="16" y1="13" x2="8" y2="13"></line>
-                      <line x1="16" y1="17" x2="8" y2="17"></line>
-                      <polyline points="10 9 9 9 8 9"></polyline>
-                    </svg>
+              
+              <div class="form-subsection">
+                <h3 class="form-subsection-title">经营许可证</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="dom-license-number">许可证编号 <span class="required">*</span></label>
+                    <input type="text" id="dom-license-number" name="license_number" required placeholder="请输入许可证编号" />
                   </div>
-                  <p class="file-upload-text"><span class="upload-link">点击上传</span> 营业执照</p>
-                  <p class="file-upload-hint">PDF / JPG / PNG，不超过 10MB</p>
-                  <div class="file-name-display" id="dom-license-name"></div>
+                  <div class="form-group">
+                    <label for="dom-license-type">类型（专项/普通）<span class="required">*</span></label>
+                    <select id="dom-license-type" name="license_type" required>
+                      <option value="special">专项</option>
+                      <option value="general">普通</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="dom-license-validity">有效期（年）<span class="required">*</span></label>
+                    <input type="number" id="dom-license-validity" name="license_validity" required placeholder="例如：2025" min="2020" max="2030" />
+                  </div>
+                  <div class="form-group">
+                    <label for="dom-license-issuance">签发日期（年）<span class="required">*</span></label>
+                    <input type="number" id="dom-license-issuance" name="license_issuance" required placeholder="例如：2020" min="2000" max="2026" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="dom-license">经营许可证文件 <span class="required">*</span></label>
+                  <div class="file-upload-card" id="dom-license-card">
+                    <input type="file" id="dom-license" name="business_license" required accept=".jpg,.jpeg,.png,.pdf" />
+                    <div class="file-upload-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                      </svg>
+                    </div>
+                    <p class="file-upload-text"><span class="upload-link">点击上传</span> 经营许可证</p>
+                    <p class="file-upload-hint">PDF / JPG / PNG，不超过 10MB</p>
+                    <div class="file-name-display" id="dom-license-name"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-subsection">
+                <h3 class="form-subsection-title">公司银行账户证明</h3>
+                <div class="form-group">
+                  <label for="dom-bank-cert">银行对账单或开户证明 <span class="required">*</span></label>
+                  <div class="file-upload-card" id="dom-bank-cert-card">
+                    <input type="file" id="dom-bank-cert" name="bank_certificate" required accept=".jpg,.jpeg,.png,.pdf" />
+                    <div class="file-upload-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                      </svg>
+                    </div>
+                    <p class="file-upload-text"><span class="upload-link">点击上传</span> 银行账户证明</p>
+                    <p class="file-upload-hint">PDF / JPG / PNG，不超过 10MB</p>
+                    <div class="file-name-display" id="dom-bank-cert-name"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -410,7 +480,7 @@
         </div>
 
         <!-- Singapore Form -->
-        <div class="tab-content" id="tab-singapore">
+        <div class="tab-content active" id="tab-singapore">
           <form id="singapore-form" class="register-form">
             <!-- Company Information -->
             <div class="form-section">
@@ -457,7 +527,7 @@
               <h2 class="form-section-title">Qualification Documents (Required)</h2>
               
               <div class="form-subsection">
-                <h3 class="form-subsection-title">STB Travel Agency License</h3>
+                <h3 class="form-subsection-title">Agency License</h3>
                 <div class="form-row">
                   <div class="form-group">
                     <label for="int-license-number">License Number <span class="required">*</span></label>
@@ -466,7 +536,6 @@
                   <div class="form-group">
                     <label for="int-license-type">Type (Special/General) <span class="required">*</span></label>
                     <select id="int-license-type" name="license_type" required>
-                      <option value="">Select type</option>
                       <option value="special">Special</option>
                       <option value="general">General</option>
                     </select>
@@ -483,7 +552,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="int-license-file">STB Travel Agency License <span class="required">*</span></label>
+                  <label for="int-license-file">Agency License <span class="required">*</span></label>
                   <div class="file-upload-card" id="int-license-file-card">
                     <input type="file" id="int-license-file" name="license_file" required accept=".jpg,.jpeg,.png,.pdf" />
                     <div class="file-upload-icon">
@@ -495,7 +564,7 @@
                         <polyline points="10 9 9 9 8 9"></polyline>
                       </svg>
                     </div>
-                    <p class="file-upload-text"><span class="upload-link">Click to upload</span> STB License</p>
+                    <p class="file-upload-text"><span class="upload-link">Click to upload</span> Agency License</p>
                     <p class="file-upload-hint">PDF / JPG / PNG, max 10MB</p>
                     <div class="file-name-display" id="int-license-file-name"></div>
                   </div>
@@ -607,12 +676,14 @@ const translations = {
   china: {
     title: '注册您的旅行社',
     description: '加入 Tour Matrix AI，开始更快速地创建专业行程方案。',
-    regionLabel: '选择地区'
+    regionLabel: '选择地区',
+    cityLabel: '城市'
   },
   singapore: {
     title: 'Register Your Agency',
     description: 'Join Tour Matrix AI and start creating professional itineraries faster.',
-    regionLabel: 'Select Region'
+    regionLabel: 'Select Region',
+    cityLabel: 'City'
   }
 };
 
@@ -621,6 +692,7 @@ const regionSelect = document.getElementById('region-select');
 const pageTitle = document.getElementById('page-title');
 const pageDescription = document.getElementById('page-description');
 const regionLabel = document.getElementById('region-label');
+const cityLabel = document.getElementById('city-label');
 
 if (regionSelect) {
   regionSelect.addEventListener('change', (e) => {
@@ -631,6 +703,7 @@ if (regionSelect) {
     pageTitle.textContent = texts.title;
     pageDescription.textContent = texts.description;
     regionLabel.textContent = texts.regionLabel;
+    cityLabel.innerHTML = `${texts.cityLabel} <span class="required">*</span>`;
     
     // Update active tab content
     document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
