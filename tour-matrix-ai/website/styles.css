@@ -353,6 +353,20 @@ input:focus, select:focus, textarea:focus{
 .footer-text{margin:0; max-width:360px; color:var(--muted); font-size:var(--fs-body-sm)}
 .footer-links{display:grid; gap:10px; color:var(--navy-2); font-weight:600; font-size:var(--fs-body-sm)}
 
+/* About page */
+.about-offices{display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start}
+.office-map{border-radius:var(--radius); overflow:hidden}
+.office-cards{display:grid; gap:18px}
+.office-card{
+  padding:24px; border:1px solid var(--line); border-radius:18px; background:#fff; box-shadow:var(--shadow-soft);
+}
+.office-city{
+  font-size:var(--fs-h4); font-weight:700; color:var(--navy-2); margin-bottom:8px;
+}
+.office-address{margin:0; color:var(--muted); font-size:var(--fs-body-sm); line-height:1.6}
+.about-text p{margin:0 0 18px; color:var(--muted); font-size:var(--fs-body); line-height:1.75}
+.about-text p:last-child{margin-bottom:0}
+
 @media (max-width: 1120px){
   .hero-grid, .split-grid, .demo-grid{grid-template-columns:1fr}
   .feature-grid, .detail-grid{grid-template-columns:repeat(2,1fr)}
@@ -378,7 +392,7 @@ input:focus, select:focus, textarea:focus{
   }
   .dropdown.open .dropdown-menu{display:block}
   .nav-cta{display:none}
-  .hero-metrics, .feature-grid, .stats-grid, .trust-grid, .field-row, .footer-grid, .detail-grid{
+  .hero-metrics, .feature-grid, .stats-grid, .trust-grid, .field-row, .footer-grid, .detail-grid, .about-offices{
     grid-template-columns:1fr;
   }
   .section{padding:76px 0}
